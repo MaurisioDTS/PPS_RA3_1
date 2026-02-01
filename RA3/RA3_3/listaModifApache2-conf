@@ -1,0 +1,54 @@
+# cambios en los directorios
+<Directory />
+        Options -Indexes
+        AllowOverride None
+</Directory>
+
+<Directory /usr/share>
+        AllowOverride None
+        Require all granted
+</Directory>
+
+# anti SSI
+<Directory /var/www/>
+        Options -Indexes -Incluides   
+        Order allow,denyAllow from all
+</Directory>
+
+# peticiones http restringidas
+<LimitExcept GET POST HEAD>
+        deny from all
+</LimitExcept>
+
+
+# no mas firma de server
+ServerTokens Prod
+ServerSignature Off
+
+# no mas ETag
+FileETag None
+
+# peticiones http restringidas
+<LimitExcept GET POST HEAD>
+    deny from all
+</LimitExcept>
+
+# no mas traza http
+TraceEnable off
+
+# cookies solo http y secureFlag
+Header edit Set-Cookie ^(.*)$ $1;HttpOnly;Secure
+
+# anti clickjacking
+Header always append X-Frame-Options SAMEORIGIN
+
+# anti XSS
+Header set X-XSS-Protection "1; mode=block"
+
+# no mas http1
+RewriteEngine On
+RewriteCond %{THE_REQUEST} !HTTP/1.1$
+RewriteRule .* - [F]
+
+# nuevo timeout
+Timeout 60

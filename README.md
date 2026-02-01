@@ -1,6 +1,6 @@
-# RA3 - APACHE HARDENING 
+# RA3 - mauricio
 
-NO ENTIENDO NADA
+Aqui se suben cosas para el RA3
 
 Incluye lo siguiente:
 * [RA3_1](#TODO): Apache Hardening
